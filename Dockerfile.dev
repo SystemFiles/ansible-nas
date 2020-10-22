@@ -1,0 +1,11 @@
+FROM ubuntu:20.04
+
+RUN apt update && apt install -y ansible
+RUN mkdir -p /ansible-plays/
+
+WORKDIR /
+COPY ./playbook.yml ./ansible-plays/
+COPY ./ansible-nas/ /etc/ansible/roles/ansible-nas/
+
+# Run the play (CAN BE OVERIDDEN)
+CMD [ "ansible-playbook", "./ansible-plays/playbook.yml" ]

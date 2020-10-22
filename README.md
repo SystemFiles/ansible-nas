@@ -1,46 +1,112 @@
-# Project Title
+<p align="center">
+  <a href="" rel="noopener">
+ <img width=200px height=250px src="/images/ansible.png" alt="Ansible Project"></a>
+</p>
 
-## Table of Contents
+<h3 align="center">Ansible NAS</h3>
+
+<div align="center">
+
+[![Status](https://img.shields.io/badge/status-active-success.svg)](https://sykesdev.ca/projects/)
+[![Build Status](https://github.com/systemfiles/ansible-nas/workflows/test-local/badge.svg)](https://github.com/systemfiles/ansible-nas/actions?query=workflow%3Atest-local)
+[![GitHub Issues](https://img.shields.io/github/issues/systemfiles/ansible-nas.svg)](https://github.com/SystemFiles/ansible-nas/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/systemfiles/ansible-nas.svg)](https://github.com/SystemFiles/ansible-nas/issues)
+[![License](https://img.shields.io/badge/license-Apache2.0-blue.svg)](/LICENSE)
+
+---
+
+<p align="center"> Automated Network Attached Storage Installation + Configuration
+    <br> 
+</p>
+
+## 📝 Table of Contents
 
 - [About](#about)
 - [Getting Started](#getting_started)
-- [Usage](#usage)
-- [Contributing](../CONTRIBUTING.md)
 
-## About <a name = "about"></a>
+## 🧐 About <a name = "about"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
 
-## Getting Started <a name = "getting_started"></a>
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+## ✍️ Getting Started <a name = "getting_started" >
 
-### Prerequisites
+Using this role should be pretty much the same as any other role, but just to make sure, I will include the following directions for different ways of consuming the role.
 
-What things you need to install the software and how to install them.
+### Docker
 
-```
-Give examples
-```
+Create a Dockerfile similar to the [provided one](/Dockerfile.dev) in this repo.
 
-### Installing
+```dockerfile
 
-A step by step series of examples that tell you how to get a development env running.
+FROM ubuntu:20.04
 
-Say what the step will be
+RUN apt update && apt install -y ansible
+RUN mkdir -p /ansible-plays/
 
-```
-Give the example
-```
+WORKDIR /
+COPY ./install_configure_play.yml ./ansible-plays/
+COPY ./config-dns-server/ /etc/ansible/roles/config-dns-server/
 
-And repeat
+# Run the play (CAN BE OVERIDDEN)
+CMD [ "ansible-playbook", "./ansible-plays/install_configure_play.yml" ]
 
 ```
-until finished
+
+Build the container image
+
+```bash
+
+docker build -t ansible-dev:latest -f Dockerfile .
+
 ```
 
-End with an example of getting some data out of the system or using it for a little demo.
+Run the container using your image
 
-## Usage <a name = "usage"></a>
+```
 
-Add notes about how to use the system.
+docker run -it -p 53:53/udp -p 53:53/tcp ansible-dev:latest
+
+```
+
+### Manual
+
+Installing manually requires a couple of extra steps than the previous methods of installation. This method is, however, more clear.
+
+First fork the repository and make your customizations to the `config-dns-server/vars/` role variables
+
+```yml
+
+
+
+```
+
+Copy the role to your master or node `/etc/ansible/roles/` and create a playbook
+
+**local**
+
+```yml
+
+---
+- hosts: 127.0.0.1
+  connection: local
+  become: true
+  roles:
+    - config-dns-server
+
+```
+
+**master**
+
+```yml
+
+---
+- hosts: webservers
+  become: true
+  roles:
+    - config-dns-server
+
+```
+
+## 👷‍♂️ Authors <a name = "authors" >
+
+- [Ben Sykes (SystemFiles)](https://sykesdev.ca/)

@@ -1,0 +1,10 @@
+---
+# Tasks for storage account configuration
+
+- name: Create file share directories
+  file:
+    path: "{{ item.path }}"
+    state: directory
+    mode: "{{ item.directory_mask }}"
+  with_items:
+    - "{{ file_shares }}"

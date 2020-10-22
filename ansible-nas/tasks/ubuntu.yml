@@ -1,0 +1,28 @@
+---
+# Tasks for ubuntu
+
+- name: Make sure all packages are up-to-date
+  apt:
+    name: "*"
+    state: latest
+- name: Install tasksel
+  apt:
+    name: ["tasksel", "systemctl", "git", "curl"]
+    state: present
+- name: (DANGEROUS) Install samba-server using tasksel
+  shell: tasksel install samba-server
+- name: Create users on Samba user management system
+  shell: (echo {{ item.default_password }}; echo {{ item.default_password }}) | smbpasswd -a {{ item.name }}
+- name: Template smb.conf
+  template:
+    src: "{{ role_path }}/templates/smb.conf.j2"
+    dest: /etc/samba/smb.conf
+    force: true
+- name: Make sure the smbd service is running
+  systemd:
+    name: smbd
+    status: started
+- name: Restart the smbd service
+  systemd:
+    name: smbd
+    status: restarted

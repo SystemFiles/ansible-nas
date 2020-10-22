@@ -1,0 +1,57 @@
+[global]
+  workgroup = WORKGROUP
+  server string = %h server (Samba, {{ ansible_os_family }})
+  log file = /var/log/samba/log.%m
+  max log size = 1000
+  logging = file
+  panic action = /usr/share/samba/panic-action %d
+  server role = standalone server
+  obey pam restrictions = yes
+  unix password sync = yes
+  passwd program = /usr/bin/passwd %u
+  passwd chat = *Enter\snew\s*\spassword:* %n\n *Retype\snew\s*\spassword:* %n\n *password\supdated\ssuccessfully* .
+  pam password change = yes
+  map to guest = bad user
+  usershare allow guests = yes
+[printers]
+  comment = All Printers
+  browseable = no
+  path = /var/spool/samba
+  printable = yes
+  guest ok = no
+  read only = yes
+  create mask = 0700
+[print$]
+  comment = Printer Drivers
+  path = /var/lib/samba/printers
+  browseable = yes
+  read only = yes
+  guest ok = no
+
+{% for share in file_shares -%}
+[{{ share.name }}]
+  comment = {{ share.desc }}
+  {% if share.browsable == true %}
+  browseable = yes
+  {% else %}
+  browseable = no
+  {% endif %}
+  {% if share.read_only == true %}
+  read only = yes
+  {% else %}
+  read only = no
+  {% endif %}
+  {% if share.writable == true %}
+  writable = yes
+  {% else %}
+  writable = no
+  {% endif %}
+  create mask = {{ share.create_mask }}
+  directory mask = {{ share.directory_mask }}
+  {% if share.guest_ok == true %}
+  guest ok = yes
+  {% else %}
+  guest ok = no
+  {% endif %}
+  valid users = %S
+{% endfor %}

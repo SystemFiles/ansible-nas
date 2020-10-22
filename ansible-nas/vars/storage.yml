@@ -1,0 +1,18 @@
+---
+# Vars for configuring storage shares on SMB
+
+
+# Setup fileshares on this NAS setup
+# name: The name of this fileshare
+# desc: The description of this share
+# path: The path to the folder to create fileshare for (INCLUDES mounted volume)
+# browsable: Can anyone browse the list of files in this fileshare
+# create_mask: The permissions to use for file and directory creation
+# read_only: Is this a readonly share
+# writable: Is this a writable file share
+# guest_ok: Is it okay for guests to use this fileshare?
+# directory_mask: The permissions to set for directories
+# 
+file_shares:
+  - { name: "documents", desc: "Documents Folder", path: "/home/ben/documents/", browsable: true, create_mask: "0700", read_only: false, writable: true, guest_ok: false, directory_mask: "0700" }
+  - { name: "public", desc: "Public share folder", path: "/var/public_fileshare/", browsable: true, create_mask: "0660", read_only: false, writable: true, guest_ok: true, directory_mask: "0771" }

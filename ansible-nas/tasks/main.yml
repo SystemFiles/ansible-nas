@@ -1,0 +1,16 @@
+---
+# tasks file for ansible-nas
+
+- name: Load vars from file
+  include_vars:
+    file: "{{ item }}"
+  with_items:
+    - "users.yml"
+    - "storage.yml"
+- name: Configure users for NAS
+  include_tasks: "users.yml"
+- name: Create Storage Locations/Mounts
+  include_tasks: "storage.yml"
+- name: Include ubuntu tasks
+  include_tasks: "ubuntu.yml"
+  when: ansible_os_family == 'Debian' or ansible_os_family == 'Ubuntu'

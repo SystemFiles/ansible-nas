@@ -1,0 +1,10 @@
+---
+# Vars for configuring user accounts for NAS
+
+# List of users for this NAS installation
+# name: Name of the user
+# shell: The shell used for this user
+# groups: Groups this user is part of
+# default_password: The default password for this user
+user_list:
+  - {name: "ben", shell: "/bin/bash", groups: "wheel", default_password: "startpassword"}
