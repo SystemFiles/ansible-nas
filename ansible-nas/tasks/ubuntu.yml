@@ -5,7 +5,7 @@
   apt:
     name: "*"
     state: latest
-- name: Install Samba (SMB)
+- name: Install Samba (SMB) and net-tools
   apt:
     name: ["samba", "net-tools"]
     state: present

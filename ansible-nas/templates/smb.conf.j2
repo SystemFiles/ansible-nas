@@ -56,5 +56,7 @@
   {% else %}
   guest ok = no
   {% endif %}
+  {% if share.valid_users != "" %}
   valid users = %S
+  {% endif %}
 {% endfor %}
