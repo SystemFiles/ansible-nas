@@ -31,6 +31,9 @@
 {% for share in file_shares -%}
 [{{ share.name }}]
   comment = {{ share.desc }}
+  {% if share.path != "" %}
+  path = {{ share.path }}
+  {% endif %}
   {% if share.browsable == true %}
   browseable = yes
   {% else %}

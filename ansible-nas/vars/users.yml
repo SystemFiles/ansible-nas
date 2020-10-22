@@ -7,4 +7,9 @@
 # groups: Groups this user is part of
 # default_password: The default password for this user
 user_list:
-  - {name: "ben", shell: "/bin/bash", groups: "wheel", default_password: "startpassword"}
+  - {name: "ben", shell: "/sbin/nologin", groups: "public,fileadmin", default_password: "startpassword"}
+
+group_list:
+  - public
+  - fileadmin
+  - guest

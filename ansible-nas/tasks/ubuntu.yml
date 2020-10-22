@@ -5,12 +5,10 @@
   apt:
     name: "*"
     state: latest
-- name: Install tasksel
+- name: Install Samba (SMB)
   apt:
-    name: ["systemctl", "git", "curl", "samba"]
+    name: ["samba", "net-tools"]
     state: present
-# - name: (DANGEROUS) Install samba-server using tasksel
-#   shell: tasksel install samba-server
 - name: Create users on Samba user management system
   shell: (echo {{ item.default_password }}; echo {{ item.default_password }}) | smbpasswd -a {{ item.name }}
   with_items:

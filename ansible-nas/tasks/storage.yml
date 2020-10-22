@@ -5,6 +5,8 @@
   file:
     path: "{{ item.path }}"
     state: directory
+    group: "{{ item.group | lower }}"
     mode: "{{ item.directory_mask }}"
+    recurse: true
   with_items:
     - "{{ file_shares }}"
