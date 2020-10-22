@@ -1,7 +1,8 @@
 ---
 # Vars for configuring user accounts for NAS
 
-# List of users for this NAS installation
+# [List of users for this NAS installation]
+# WARNING: THIS WILL MODIFY A USER IF IT ALREADY EXISTS ON THE SYSTEM (use with caution!)
 # name: Name of the user
 # shell: The shell used for this user
 # groups: Groups this user is part of
