@@ -1,24 +1,25 @@
 ---
 # Tasks for setting up users
 
-- name: Make sure we have a 'wheel' group
-  group:
-    name: wheel
-    state: present
-
-- name: Allow 'wheel' group to have passwordless sudo
-  lineinfile:
-    dest: /etc/sudoers
-    state: present
-    regexp: '^%wheel'
-    line: '%wheel ALL=(ALL) NOPASSWD: ALL'
-    validate: 'visudo -cf %s'
-
+# - name: Make sure we have a 'wheel' group
+#   group:
+#     name: wheel
+#     state: present
+# - name: Make sure /etc/sudoers exists
+#   file:
+#     path: "/etc/sudoers"
+#     state: touch
+# - name: Allow 'wheel' group to have passwordless sudo
+#   lineinfile:
+#     dest: /etc/sudoers
+#     state: present
+#     regexp: '^%wheel'
+#     line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+#     validate: 'visudo -cf %s'
 - name: Add users from config
   user:
     name: "{{ item.name }}"
     shell: "{{ item.shell }}"
-    groups: "{{ item.groups }}"
     password: "{{ item.default_password }}"
     create_home: yes
     append: yes
