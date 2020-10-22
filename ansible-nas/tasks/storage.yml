@@ -8,6 +8,6 @@
     group: "{{ item.group | lower }}"
     mode: "{{ item.directory_mask }}"
     recurse: true
-  when: item[path] != ""
+  when: item.path != ""
   with_items:
     - "{{ file_shares }}"
