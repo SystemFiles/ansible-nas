@@ -9,7 +9,7 @@
   apt:
     name: ["samba", "net-tools"]
     state: present
-- name: Create users on Samba user management system
+- name: Create users on Samba user management system (append)
   shell: (echo {{ item.default_password }}; echo {{ item.default_password }}) | smbpasswd -a {{ item.name }}
   with_items:
     - "{{ user_list }}"
@@ -18,14 +18,10 @@
     src: "{{ role_path }}/templates/smb.conf.j2"
     dest: /etc/samba/smb.conf
     force: true
-- name: Enable the smbd service
+- name: Make sure smbd is enabled at startup
   systemd:
     name: smbd
     enabled: true
-- name: Make sure the smbd service is running
-  systemd:
-    name: smbd
-    state: started
 - name: Restart the smbd service
   systemd:
     name: smbd
