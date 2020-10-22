@@ -5,7 +5,7 @@
 # name: Name of the user
 # shell: The shell used for this user
 # groups: Groups this user is part of
-# default_password: The default password for this user
+# default_password: The default password for this user (!!REMEMBER TO CHANGE THIS MANUALLY LATER!!)
 user_list:
   - {name: "ben", shell: "/sbin/nologin", groups: "public", default_password: "startpassword"}
 
