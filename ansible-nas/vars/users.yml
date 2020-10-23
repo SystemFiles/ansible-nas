@@ -7,9 +7,10 @@
 # shell: The shell used for this user
 # groups: Groups this user is part of
 # default_password: The default password for this user (!!REMEMBER TO CHANGE THIS MANUALLY LATER!!)
-# password_sync: Sync SMB password with system password
+# password_sync: Sync SMB password with system password (not working right now)
 user_list:
-  - { name: "ben", shell: "/sbin/nologin", groups: "public", default_password: "startpassword", password_sync: true }
+  - { name: "bensykes", shell: "/sbin/nologin", groups: "public,fileadmin", default_password: "startpassword", password_sync: true }
 
 group_list:
   - public
+  - fileadmin

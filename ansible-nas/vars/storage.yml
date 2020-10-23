@@ -15,4 +15,5 @@
 # valid_users: Specify valid user codes or names (https://www.samba.org/samba/docs/using_samba/ch06.html)
 file_shares:
   - { name: "homes", desc: "User share folders", path: "", group: "fileadmin", browsable: true, create_mask: "2770", read_only: false, writable: true, guest_ok: false, directory_mask: "2770", valid_users: "%S" }
+  - { name: "bensykes-e", desc: "External fileshare personal", path: "/media/bensykes_external/", group: "fileadmin", browsable: true, create_mask: "2770", read_only: false, writable: true, guest_ok: false, directory_mask: "2770", valid_users: "" }
   - { name: "public", desc: "Public share folder", path: "/svr/samba/public", group: "public", browsable: true, create_mask: "2775", read_only: false, writable: true, guest_ok: false, directory_mask: "2775", valid_users: "" }
