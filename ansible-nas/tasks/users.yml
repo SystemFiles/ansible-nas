@@ -1,14 +1,14 @@
 ---
 # Tasks for setting up users
 
-- name: Add groups from config
+- name: Add groups from config (if not exists)
   group:
     name: "{{ item }}"
     state: present
   with_items:
     - "{{ group_list }}"
 
-- name: Add users from config
+- name: Add users from config (if not exists)
   user:
     name: "{{ item.name }}"
     shell: "{{ item.shell }}"
