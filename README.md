@@ -5,8 +5,6 @@
 
 <h3 align="center">Ansible NAS</h3>
 
-<div align="center">
-
 [![Status](https://img.shields.io/badge/status-active-success.svg)](https://sykesdev.ca/projects/)
 [![Build Status](https://github.com/systemfiles/ansible-nas/workflows/test-local/badge.svg)](https://github.com/systemfiles/ansible-nas/actions?query=workflow%3Atest-local)
 [![GitHub Issues](https://img.shields.io/github/issues/systemfiles/ansible-nas.svg)](https://github.com/SystemFiles/ansible-nas/issues)
@@ -26,7 +24,7 @@
 
 ## 🧐 About <a name = "about"></a>
 
-
+INSTALL AND CONFIGURE NAS on ubuntu using this role 
 
 ## ✍️ Getting Started <a name = "getting_started" >
 
