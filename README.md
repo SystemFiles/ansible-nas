@@ -1,15 +1,13 @@
-<p align="center">
-  <a href="" rel="noopener">
- <img width=200px height=250px src="/images/ansible.png" alt="Ansible Project"></a>
-</p>
 
 <h3 align="center">Ansible NAS</h3>
 
+<p align="center">
 [![Status](https://img.shields.io/badge/status-active-success.svg)](https://sykesdev.ca/projects/)
 [![Build Status](https://github.com/systemfiles/ansible-nas/workflows/test-local/badge.svg)](https://github.com/systemfiles/ansible-nas/actions?query=workflow%3Atest-local)
 [![GitHub Issues](https://img.shields.io/github/issues/systemfiles/ansible-nas.svg)](https://github.com/SystemFiles/ansible-nas/issues)
 [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/systemfiles/ansible-nas.svg)](https://github.com/SystemFiles/ansible-nas/issues)
 [![License](https://img.shields.io/badge/license-Apache2.0-blue.svg)](/LICENSE)
+</p>
 
 ---
 
